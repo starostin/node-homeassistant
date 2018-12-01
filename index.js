@@ -25,7 +25,9 @@ class Homeassistant extends EventEmitter {
   }
 
   connect() {
-    this.ws = new Websocket(this.url)
+    this.ws = new Websocket(this.url, {
+        rejectUnauthorized: false
+    })
 
     this.ws.on('message', data => {
       data = JSON.parse(data)
